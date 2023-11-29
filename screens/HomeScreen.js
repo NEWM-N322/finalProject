@@ -47,7 +47,7 @@ export default function HomeScreen({navigation}) {
                  secureTextEntry = {true}/>
 
                  {/* btn to sign in */}
-                 <Button mode="contained" title="Sign In">Sign In</Button>
+                 <Button style={styles.button} mode="contained" title="Sign In">Sign In</Button>
                 </View>
 
                 {/* begin create acc content */}
@@ -77,7 +77,7 @@ export default function HomeScreen({navigation}) {
                  secureTextEntry = {true}/>
 
                    {/* btn to create acc */}
-                 <Button mode="contained" title="Sign In">Create Account</Button>
+                 <Button style={styles.button} mode="contained" title="Sign In">Create Account</Button>
                  
                 </View>
         </View>
@@ -132,4 +132,10 @@ input: {
         marginBottom: 10,
         marginTop: 20
 },
+
+ //button
+ button: {
+        marginTop: 20,
+        marginBottom: 20,
+}
 });
