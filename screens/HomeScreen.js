@@ -23,7 +23,7 @@ export default function HomeScreen({navigation}) {
         {/* container view w styling */}
         <View style={styles.container}>
                 {/* text to welcome user */}
-                <Text style={styles.header}>Affirmations Daily - You Are Loved!</Text>
+                <Text style={styles.header}>Affirmations Daily - Love Yourself!</Text>
                 {/* sub description */}
                 <Text style={styles.description}>This is a simple React Native Application to remind you about the importance of someone special: you!</Text>
 
@@ -92,7 +92,6 @@ const styles = StyleSheet.create({
         //container
         container: {
                 flex: 1,      
-                backgroundColor: '#fff',
                 padding: 20,
                 marginTop: 20,
         },
@@ -100,7 +99,9 @@ const styles = StyleSheet.create({
 //big header
 header : {
         fontSize: 24,
-        marginBottom: 20
+        marginBottom: 20,
+        fontWeight: 'bold',
+        color: '#59372b'
 },
 
 //description text
@@ -124,18 +125,21 @@ redirection: {
 //sign in / create acc
 signAcc: {
         fontSize: 19,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: '#483a3a'
 },
 
 //input boxes
 input: {
         marginBottom: 10,
-        marginTop: 20
+        marginTop: 20,
+        backgroundColor: '#d1bcbc',
 },
 
  //button
  button: {
         marginTop: 20,
         marginBottom: 20,
+        backgroundColor: '#3f3832'
 }
 });
