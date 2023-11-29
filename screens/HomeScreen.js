@@ -4,7 +4,7 @@
 import {useState} from 'react';
 
 //import from react native
-import {Text, View, StyleSheet, ScrollView, Alert} from 'react-native';
+import {ActivityIndicator, Text, View, StyleSheet, ScrollView, Alert} from 'react-native';
 
 //import from react native paper
 import { TextInput, Button, List } from 'react-native-paper';
@@ -13,8 +13,34 @@ import { TextInput, Button, List } from 'react-native-paper';
 //needs to have navigation in param
 //this allows it to travel back and forth
 export default function HomeScreen({navigation}) {
-        
+        //create necessary usestates
 
+        //UseState cases: Signed in User
+
+        //sign in email
+        const [signInEmail, setSignInEmail] = useState();
+
+         //sign in pw
+         const [signInPW, setSignInPW] = useState();
+
+         
+        //UseState cases: Creating Account
+
+          //create acc first name
+          const [createAccFName, setCreateAccFName] = useState();
+
+        //create acc first name
+         const [createAccLName, setCreateAccLName] = useState();
+
+        //create acc email
+        const [createAccEmail, setCreateAccEmail] = useState();
+
+        //create acc pw
+        const [createAccPW, setCreateAccPW] = useState();
+
+        //to simulate loading 
+        //loading indicator
+        const [loadingIndication, setLoadingIndication] = useState();
         //return the view
         return (
           //this will allow users to scroll
