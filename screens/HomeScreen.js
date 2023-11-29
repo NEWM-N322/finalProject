@@ -4,10 +4,16 @@
 import {useState} from 'react';
 
 //import from react native
-import {ActivityIndicator, Text, View, StyleSheet, ScrollView, Alert} from 'react-native';
+import {ActivityIndicator, Text, View, StyleSheet, ScrollView} from 'react-native';
 
 //import from react native paper
 import { TextInput, Button, List } from 'react-native-paper';
+
+//importing all firebase configs
+import {auth} from '../firebaseConfig';
+
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
+import { async } from '@firebase/util';
 
 
 //needs to have navigation in param
@@ -41,6 +47,100 @@ export default function HomeScreen({navigation}) {
         //to simulate loading 
         //loading indicator
         const [loadingIndication, setLoadingIndication] = useState();
+
+          //begin all necessary functions
+
+        //for when a user signs in 
+        //make this an async function
+        const UserIsSignedIn = async () => {
+        
+                //turn on the loading indicator
+                setLoadingIndication(true);
+        
+                //using a try catch block to make things easier
+        
+                //begin try
+                try {
+                //wait for the email and pw to be typed, authenticate it
+                await signInWithEmailAndPassword(auth, signInEmail, signInPW).then((userCredential) => {
+
+                        //console a success (testing purposes)
+                        console.log("user is signed in");
+
+                        //reset the values
+
+                        //email
+                        setSignInEmail("");
+
+                        //pw
+                        setSignInPW("");
+
+                        //remove the loading indication
+                        setLoadingIndication(false);
+
+                        //navigate to details 
+                        navigation.navigate("details");
+                })
+
+                //internal catch block
+                //if unsuccessful, send err msg 
+                .catch((error) => {
+
+                        //remove loading indication
+                        setLoadingIndication(false);
+
+                        //console the err w msg
+                        console.log("error:" ,error.message);
+                })
+                //begin catch
+                } catch(error) {
+                //display the err w a msg
+                console.log("block error: " , error.message);
+        
+                }
+        }
+
+        //for when a user creates an acc
+        const UserIsCreated = async () => {
+                //turn on the loading indicator
+                 setLoadingIndication(true);
+
+                  //using a try catch block to make things easier
+        
+                //begin try
+                try {
+                        //wait for all necessary fields, authenticate it
+                        await createUserWithEmailAndPassword(auth, createAccEmail, createAccPW).then((userCredential) => {
+                                //once user gave info:
+
+                                //console a success
+                                console.log("user has been created");
+
+                                //reset each value
+
+                                //first name
+                                setCreateAccFName("");
+
+                                //last name
+                                setCreateAccLName("");
+
+                                //email
+                                setCreateAccEmail("");
+
+                                //pw
+                                setCreateAccPW("");
+
+                                //remove the loading indicator
+                                setLoadingIndication(false);
+
+                                //navigate to detail screen
+                                navigation.navigate("details");
+                        })
+        } catch {
+
+        }
+  }
+        
         //return the view
         return (
           //this will allow users to scroll
@@ -64,16 +164,19 @@ export default function HomeScreen({navigation}) {
                {/* user name */}
                <TextInput
                 style={styles.input}
+                onChangeText={setSignInEmail}
+                value={signInEmail}
                 label = "Username" />
 
                {/* password */}
                <TextInput
-                style={styles.input}
-                label= "Password"
-                 secureTextEntry = {true}/>
+                style={styles.input}secureTextEntry = {true}
+                onChangeText={setSignInPW}
+                value={signInPW}
+                label= "Password" />
 
                  {/* btn to sign in */}
-                 <Button style={styles.button} mode="contained" title="Sign In">Sign In</Button>
+                 <Button style={styles.button} mode="contained" title="Sign In" onPress={UserIsSignedIn}>Sign In</Button>
                 </View>
 
                 {/* begin create acc content */}
@@ -84,26 +187,34 @@ export default function HomeScreen({navigation}) {
                  {/* first name */}
                <TextInput
                 style={styles.input}
+                onChangeText={setCreateAccFName}
+                value={createAccFName}
                 label = "First Name" />
 
                  {/* last name */}
                <TextInput
                 style={styles.input}
+                onChangeText={setCreateAccLName}
+                value={createAccLName}
                 label = "Last Name" />
 
                {/* user email */}
                <TextInput
                 style={styles.input}
+                onChangeText={setCreateAccEmail}
+                value={createAccEmail}
                 label = "Email Address" />
 
                {/* password */}
                <TextInput
                 style={styles.input}
+                onChangeText={setCreateAccPW}
+                value={createAccPW}
                 label= "Create a Password"
                  secureTextEntry = {true}/>
 
                    {/* btn to create acc */}
-                 <Button style={styles.button} mode="contained" title="Sign In">Create Account</Button>
+                 <Button style={styles.button} mode="contained" title="Sign In" onPress={UserIsCreated}>Create Account</Button>
                  
                 </View>
         </View>
