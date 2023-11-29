@@ -26,11 +26,16 @@ const Stack = createNativeStackNavigator();
 //export the app function
 export default function App() {
   return (
-
     <SafeAreaView style={styles.container}>
+      {/* begin nav container */}
       <NavigationContainer>
+
+        {/* stack navigator */}
         <Stack.Navigator>
+          {/* stack screen for home */}
           <Stack.Screen options={{headerShown: false}} name="home" component={HomeScreen}/>
+
+          {/* stack screen for details */}
           <Stack.Screen options={{headerShown: false}} name="details" component={DetailScreen}/>
         </Stack.Navigator>
       </NavigationContainer>
