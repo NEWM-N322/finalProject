@@ -4,7 +4,7 @@
 import {useState} from 'react';
 
 //import from react native
-import {ActivityIndicator, Text, View, StyleSheet, ScrollView} from 'react-native';
+import {ActivityIndicator, Text, View, StyleSheet, ScrollView, Alert} from 'react-native';
 
 //import from react native paper
 import { TextInput, Button, List } from 'react-native-paper';
@@ -46,7 +46,7 @@ export default function HomeScreen({navigation}) {
 
         //to simulate loading 
         //loading indicator
-        const [loadingIndication, setLoadingIndication] = useState();
+        const [loadingIndication, setLoadingIndication] = useState(false);
 
           //begin all necessary functions
 
@@ -88,6 +88,9 @@ export default function HomeScreen({navigation}) {
 
                         //remove loading indication
                         setLoadingIndication(false);
+
+                        //give an alert that there is an error
+                        Alert.alert(error.message);
 
                         //console the err w msg
                         console.log("error:" ,error.message);
@@ -136,10 +139,31 @@ export default function HomeScreen({navigation}) {
                                 //navigate to detail screen
                                 navigation.navigate("details");
                         })
-        } catch {
 
-        }
-  }
+                        .catch((error) => {
+                        //remove loading indication
+                        setLoadingIndication(false);
+
+                        //give an alert that there is an error
+                        Alert.alert(error.message);
+
+                        //console the err w msg
+                        console.log("error:" , error.message);
+                        })
+
+                        //begin catch
+                } catch(error) {
+                        //remove loading indication
+                        setLoadingIndication(false);
+
+                         //give an alert that there is an error
+                         Alert.alert(error.message);
+
+                        //console the err w msg
+                        console.log("try error: ", error.message);
+                }
+       
+  };
         
         //return the view
         return (
@@ -158,6 +182,11 @@ export default function HomeScreen({navigation}) {
                 {/* header of view */}
                <Text style={styles.redirection}> Already have an account?</Text>
                <Text style={styles.signAcc}>Sign In</Text>
+
+               {/* loading animation */}
+               <View>
+                 <ActivityIndicator size="large" color="#0000ff" animating={loadingIndication}/>
+                 </View>
 
                {/* create inputs - user name + password */}
 
@@ -184,6 +213,7 @@ export default function HomeScreen({navigation}) {
                 {/* header of view */}
                 <Text style={styles.redirection}>No account yet?</Text>
                 <Text style={styles.signAcc}>Create an Account</Text>
+
                  {/* first name */}
                <TextInput
                 style={styles.input}
