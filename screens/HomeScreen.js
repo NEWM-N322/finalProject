@@ -13,7 +13,6 @@ import { TextInput, Button, List } from 'react-native-paper';
 import {auth} from '../firebaseConfig';
 
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
-import { async } from '@firebase/util';
 
 
 //needs to have navigation in param
@@ -48,6 +47,8 @@ export default function HomeScreen({navigation}) {
         //loading indicator
         const [loadingIndication, setLoadingIndication] = useState(false);
 
+        const [userName, setUserName] = useState();
+
           //begin all necessary functions
 
         //for when a user signs in 
@@ -75,11 +76,20 @@ export default function HomeScreen({navigation}) {
                         //pw
                         setSignInPW("");
 
+                         //store the users first name from the form 
+                                //set it = to whtv their fName value is
+                                const userFirstName = createAccFName;
+
+                                 // Store the user's name in a state variable (userName)
+                                 setUserName(userFirstName);
+
+
                         //remove the loading indication
                         setLoadingIndication(false);
 
                         //navigate to details 
-                        navigation.navigate("details");
+                        //grab the users name right when created
+                        navigation.navigate("details",  { userName });
                 })
 
                 //internal catch block
@@ -133,11 +143,19 @@ export default function HomeScreen({navigation}) {
                                 //pw
                                 setCreateAccPW("");
 
+                                //store the users first name from the form 
+                                //set it = to whtv their fName value is
+                                const userFirstName = createAccFName;
+
+                                 // Store the user's name in a state variable (userName)
+                                 setUserName(userFirstName);
+
                                 //remove the loading indicator
                                 setLoadingIndication(false);
 
                                 //navigate to detail screen
-                                navigation.navigate("details");
+                                //will save data from input
+                                navigation.navigate("details", { userName: createAccFName});
                         })
 
                         .catch((error) => {
@@ -183,11 +201,6 @@ export default function HomeScreen({navigation}) {
                <Text style={styles.redirection}> Already have an account?</Text>
                <Text style={styles.signAcc}>Sign In</Text>
 
-               {/* loading animation */}
-               <View>
-                 <ActivityIndicator size="large" color="#0000ff" animating={loadingIndication}/>
-                 </View>
-
                {/* create inputs - user name + password */}
 
                {/* user name */}
@@ -207,6 +220,11 @@ export default function HomeScreen({navigation}) {
                  {/* btn to sign in */}
                  <Button style={styles.button} mode="contained" title="Sign In" onPress={UserIsSignedIn}>Sign In</Button>
                 </View>
+
+                 {/* loading animation */}
+               <View>
+                 <ActivityIndicator size="large" color="#aa7c57" animating={loadingIndication}/>
+                 </View>
 
                 {/* begin create acc content */}
                 <View>
