@@ -1,6 +1,6 @@
-## NEWM-N320
+## NEWM-N320 - Final Project
 
-# Final Project - Simple Application Using Firebase Authentication
+# A Simple Application Using Firebase Authentication
 
 For our this final assignment, we were to create a React Native local application using Firebase Authentication.
 Per the rubric, this is a fully-styles, two paged application that utilizes Authentication. The user is able to create an account, log in, and log out, all using Firebase Authentication.
