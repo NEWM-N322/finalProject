@@ -11,6 +11,6 @@ For the first page, I made sure to give a small description of what the applicat
 
 In the second page, you are greeted and given three separate affirmations. there is an option to sign out and go back to the log in page.
 
-With this assignment, the hardest part for me was remembering all the different dependencies we needed to download in order to get stuff to work. I never had worked in the terminal as much as I did in this class, so there was always a fear of breaking my code or the applicaiton when I added stuff.
+With this assignment, the hardest part for me was remembering all the different dependencies we needed to download in order to get stuff to work. I never had worked in the terminal as much as I did in this class, so there was always a fear of breaking my code or the applicaiton when I added stuff. I also tried to incorporate the application remembering the first name of the user, and that definitely was a challenge, especially since there is only one first name input, and it only needed to be remembered once.
 
 I believe that this assignment utilized all the skills we gained throughout the course, while heavily focusing on the last half of the semester. I do feel that I gained more knowledge with Frameworks and definitely feel more confident using React Native.
